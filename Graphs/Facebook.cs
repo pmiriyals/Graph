@@ -31,7 +31,7 @@ namespace Graphs
     }
 
     //Represents a person object
-    class Person
+    public class Person
     {
         private readonly long Pid;
         public List<long> friendIDs { get; set; }

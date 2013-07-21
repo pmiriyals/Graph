@@ -44,9 +44,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="2DArrReachHome.cs" />
+    <Compile Include="Dijkstras.cs" />
     <Compile Include="Facebook.cs" />
     <Compile Include="Graph.cs" />
+    <Compile Include="Kruskals.cs" />
     <Compile Include="MatrixCountShapes.cs" />
+    <Compile Include="Prims.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

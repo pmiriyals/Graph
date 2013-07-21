@@ -1,0 +1,4 @@
+C:\Praneeth\C#\Git\Graph\Graphs\bin\Debug\Graphs.exe
+C:\Praneeth\C#\Git\Graph\Graphs\bin\Debug\Graphs.pdb
+C:\Praneeth\C#\Git\Graph\Graphs\obj\x86\Debug\Graphs.exe
+C:\Praneeth\C#\Git\Graph\Graphs\obj\x86\Debug\Graphs.pdb

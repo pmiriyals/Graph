@@ -11,7 +11,9 @@ namespace Graphs
         {
             //_2DArrReachHome.driver();
             //GraphDriver.driver();
-            MatrixCountShapes.driver();
+            //MatrixCountShapes.driver();
+            //Prims.driver();
+            Dijkstras.driver();
             Console.ReadLine();
         }
     }

@@ -11,11 +11,14 @@ namespace Graphs
         public List<Node<T>> neighbors = new List<Node<T>>();
         public List<int> cost = new List<int>();
         public bool isVisited { get; set; }
+        public int key { get; set; }
+        public Node<int> parent = null;
 
         public Node(T data)
         {
             this.data = data;
             isVisited = false;
+            key = Int32.MaxValue;
         }
 
         public void AddNeightbors(Node<T> node, int cst)
@@ -38,6 +41,35 @@ namespace Graphs
             nodeset = new List<Node<T>>();
         }
 
+        public void AddEdge(Node<T> n1, Node<T> n2, int cost)
+        {
+            if (!nodeset.Contains(n1))
+                nodeset.Add(n1);
+            if (!nodeset.Contains(n2))
+                nodeset.Add(n2);
+
+            n1.neighbors.Add(n2);
+            n1.cost.Add(cost);
+            n2.neighbors.Add(n1);
+            n2.cost.Add(cost);
+        }
+
+        public void printGraph()
+        {
+            Console.WriteLine("Graph: ");
+            foreach (Node<T> n in nodeset)
+            {
+                Console.WriteLine("Printing adjacent nodes for Node = {0}", n.data);
+                for (int i = 0; i < n.neighbors.Count; i++)
+                {
+                    Console.WriteLine("Edge between {0} and {1} with cost = {2}", n.data, n.neighbors[i].data, n.cost[i]);
+                }
+                Console.WriteLine("\n");
+            }
+        }
+
+        //Time: O(|E| + |V|)
+        //If the weight of the edges are same or unweighted, then BFS is used to find the node in the shortest number of steps from source node
         public bool BFSIter(T val)
         {
             if (root == null || val == null)
@@ -68,6 +100,8 @@ namespace Graphs
             return false;
         }
 
+        //Time: O(|E| + |V|)
+        //Used to detect a cycle in a graph (determine if given structure is a graph)
         public bool DFSIter(T val)
         {            
             if (root == null || val == null)
@@ -134,24 +168,13 @@ namespace Graphs
             foreach (Node<T> node in nodeset)
                 node.isVisited = false;
         }
-        
-    }
-
-    public class GraphDriver
-    {
-        public static void driver()
-        {
-            Graph<int> graph = buildTree();
-            Console.WriteLine("\nDFS Iter: element " + (graph.DFSIter(1) ? "found" : "not found"));            
-            Console.WriteLine("\nBFS Iter: element " + (graph.BFSIter(1) ? "found" : "not found"));
-            graph.DFSRecur(8);
-        }
 
         public static Graph<int> buildTree()
         {
             Graph<int> graph = new Graph<int>();
             Node<int> n = new Node<int>(0);
             graph.root = n;
+            graph.root.key = 0;
             Node<int> n1 = new Node<int>(1);
             Node<int> n2 = new Node<int>(2);
             Node<int> n3 = new Node<int>(3);
@@ -209,6 +232,18 @@ namespace Graphs
             n4.AddNeightbors(n5, 10);
 
             return graph;
+        }
+        
+    }
+
+    public class GraphDriver
+    {
+        public static void driver()
+        {
+            Graph<int> graph = Graph<int>.buildTree();
+            Console.WriteLine("\nDFS Iter: element " + (graph.DFSIter(1) ? "found" : "not found"));            
+            Console.WriteLine("\nBFS Iter: element " + (graph.BFSIter(1) ? "found" : "not found"));
+            graph.DFSRecur(8);
         }
     }
 }
