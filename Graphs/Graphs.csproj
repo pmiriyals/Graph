@@ -46,6 +46,7 @@
     <Compile Include="2DArrReachHome.cs" />
     <Compile Include="Dijkstras.cs" />
     <Compile Include="Facebook.cs" />
+    <Compile Include="FloydWarshall.cs" />
     <Compile Include="Graph.cs" />
     <Compile Include="Kruskals.cs" />
     <Compile Include="MatrixCountShapes.cs" />

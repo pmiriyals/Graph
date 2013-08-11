@@ -6,7 +6,8 @@ using System.Text;
 namespace Graphss
 {
     //http://community.topcoder.com/tc?module=Static&d1=tutorials&d2=graphsDataStrucs1
-
+    //We need to use Dijkstras or A* alg, but also need to track predecessor info to find the shortest path.
+    //Using a bottom up approach, we can only calculate the shortest between 2 vertices
     public class _2DArrReachHome
     {
         private struct point
