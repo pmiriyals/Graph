@@ -65,6 +65,7 @@ namespace Graphs
         {
             List<Edge> edges = gk.Edges.OrderBy(o => o.cost).ToList<Edge>();    //sort edges by weight/cost
             GraphKruskal mstGraph = new GraphKruskal();
+            HashSet<int> verticesInMST = new HashSet<int>();
 
             int[] parent = new int[gk.Vertices.Count];
             for (int i = 0; i < parent.Length; i++)
@@ -72,15 +73,15 @@ namespace Graphs
 
             foreach (Edge e in edges)
             {
-                int x = find(parent, e.v1);
-                int y = find(parent, e.v2);
-
-                if (x != y || (x == -1 && y == -1))
+                if(!(verticesInMST.Contains(e.v1) && verticesInMST.Contains(e.v2)))
                 {
                     mstGraph.AddEdge(e.v1, e.v2, e.cost);
+                    if (!verticesInMST.Contains(e.v1))
+                        verticesInMST.Add(e.v1);
+
+                    if (!verticesInMST.Contains(e.v2))
+                        verticesInMST.Add(e.v2);
                 }
-                
-                    
             }
         }
 

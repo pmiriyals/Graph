@@ -87,6 +87,45 @@ namespace GraphPractice
             }
         }
 
+        public Graph Dijkstras()
+        {
+            Graph mst = new Graph(null);
+            List<Node> temp = new List<Node>();
+            Node cur;
+            heapify(nodeset);
+
+            while (nodeset.Count > 0)
+            {
+                cur = nodeset[0];   //extract min
+                nodeset.RemoveAt(0);
+                temp.Add(cur);
+                Node n = new Node(cur.data);
+                if (cur.parent != null)
+                {
+                    mst.AddEdge(cur.parent, n, cur.key);
+                    cur.parent = null;
+                }
+                else
+                {
+                    mst.nodeset.Add(n);
+                    mst.root = n;
+                }
+
+                foreach (KeyValuePair<Node, int> kv in cur.edgesTo)
+                {
+                    if (kv.Key.key > (kv.Value + cur.key))
+                    {
+                        kv.Key.key = kv.Value + cur.key;
+                        kv.Key.parent = n;
+                    }
+                }
+                heapify(nodeset);
+                //siftDown(nodeset, 0, nodeset.Count - 1);
+            }
+            this.nodeset = temp;
+            return mst;
+        }
+
         public Graph Prims()
         {
             Graph mst = new Graph(null);
